@@ -19,7 +19,7 @@ jobs:
           --short HEAD)"
       - uses: LouisBrunner/checks-action@v1.1.1
         with:
-          name: Docker output
+          name: ${{ matrix.world }}:${{ steps.tag.outputs.tag }}
           token: ${{ secrets.GITHUB_TOKEN }}
           conclusion: ${{ job.status }}
           output: |
