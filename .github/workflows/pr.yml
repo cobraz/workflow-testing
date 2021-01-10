@@ -1,0 +1,28 @@
+name: Testing
+
+on:
+  pull_request:
+    
+jobs:
+  deployment:
+    name: Test (${{ matrix.world }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        world: [hello, there, you]
+    env:
+      TAG: ${GITHUB_REF#refs/*/}-$(git rev-parse --short HEAD)
+    steps:
+      - name: Set tag
+        id: tag
+        run: echo "::set-output name=tag::${GITHUB_REF#refs/*/}-$(git rev-parse
+          --short HEAD)"
+      - uses: LouisBrunner/checks-action@v1.1.1
+        with:
+          name: Docker output
+          token: ${{ secrets.GITHUB_TOKEN }}
+          conclusion: ${{ job.status }}
+          output: |
+            {
+              "summary": "Tagged build with ${{ steps.tag.outputs.tag }}"
+            }
