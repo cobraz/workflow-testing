@@ -13,14 +13,17 @@ on:
 
 jobs:
   deployment:
-    name: Test ${{ github.event.inputs.name }}
+    name: Test (${{ github.event.inputs.name }})
     runs-on: ubuntu-latest
     outputs:
       service: ${{ github.event.inputs.name }}
+    strategy:
+      matrix: 
+        world: [hello, there, you]
     steps:
       - name: Input Variables
         run: |
-           echo "name: ${{ github.event.inputs.name }}"
+           echo "name: ${{ github.event.inputs.name }} ${{ matrix.world }}"
       - uses: peter-evans/commit-comment@v1
         with:
           body: |
