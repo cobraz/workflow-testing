@@ -11,9 +11,8 @@ on:
         description: "a name"
         required: true
 
-jobs:
   deployment:
-    name: Test (${{ github.event.inputs.name }}, ${{ matrix.world }}, ${{ steps.tag.outputs.tag }})
+    name: Test (${{ github.event.inputs.name }}, ${{ matrix.world }}, ${{ env.TAG }})
     runs-on: ubuntu-latest
     outputs:
       service: ${{ github.event.inputs.name }}
