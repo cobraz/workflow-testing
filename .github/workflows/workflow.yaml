@@ -1,4 +1,4 @@
-name: Testing ${{ github.event.inputs.name }}
+name: Testing
 
 
 on:
@@ -12,6 +12,7 @@ on:
 
 jobs:
   deployment:
+    name: Test ${{ github.event.inputs.name }}
     runs-on: ubuntu-latest
     steps:
       - name: Input Variables
