@@ -13,7 +13,7 @@ on:
 
 jobs:
   deployment:
-    name: Test (${{ github.event.inputs.name }}, ${{ matrix.world }}, ${{ env.TAG }})
+    name: Test (${{ github.event.inputs.name }}, ${{ matrix.world }}, ${GITHUB_REF#refs/*/}-${{ github.sha }})
     runs-on: ubuntu-latest
     outputs:
       service: ${{ github.event.inputs.name }}
