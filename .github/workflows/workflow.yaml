@@ -21,3 +21,8 @@ jobs:
       - name: Input Variables
         run: |
            echo "name: ${{ github.event.inputs.name }}"
+      - uses: peter-evans/commit-comment@v1
+        with:
+          body: |
+            name: ${{ github.event.inputs.name }}
+          
