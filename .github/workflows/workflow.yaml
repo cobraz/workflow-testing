@@ -39,6 +39,7 @@ jobs:
         with:
           name: Output
           token: ${{ secrets.GITHUB_TOKEN }}
+          conclusion: ${{ job.status }}
           output: |
             {"summary": "Pushed ${{ github.event.inputs.name }}", "text_description": "It was a success to push ${{ github.event.inputs.name }} with ${{ matrix.world }}"}
 
