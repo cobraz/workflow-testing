@@ -8,12 +8,15 @@ on:
       - master
     inputs:
       name:
+        description: "a name"
         required: true
 
 jobs:
   deployment:
     name: Test ${{ github.event.inputs.name }}
     runs-on: ubuntu-latest
+    outputs:
+      service: ${{ github.event.inputs.name }}
     steps:
       - name: Input Variables
         run: |
