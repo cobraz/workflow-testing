@@ -1,0 +1,19 @@
+name: Testing ${{ github.event.inputs.name }}
+
+
+on:
+  workflow_dispatch:
+    branches:
+      # Only allow running workflow on master, so that config changes are deployed to master
+      - master
+    inputs:
+      name:
+        required: true
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Input Variables
+        run: |
+           echo "name: ${{ github.event.inputs.name }}"
