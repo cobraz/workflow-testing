@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Set tag
         id: tag
-        run: echo "::set-output name=tag::${GITHUB_REF#refs/*/}-$(git rev-parse --short ${{ github.sha }})"
+        run: echo "::set-output name=tag::${GITHUB_REF#refs/heads/}-$(git rev-parse --short ${{ github.sha }})"
       - uses: LouisBrunner/checks-action@v1.1.1
         with:
           name: ${{ matrix.world }}:${{ steps.tag.outputs.tag }}
