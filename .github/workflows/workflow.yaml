@@ -13,17 +13,24 @@ on:
 
 jobs:
   deployment:
-    name: Test (${{ github.event.inputs.name }}, ${{ matrix.world }})
+    name: Test (${{ github.event.inputs.name }}, ${{ matrix.world }}, ${{ steps.tag.outputs.tag }})
     runs-on: ubuntu-latest
     outputs:
       service: ${{ github.event.inputs.name }}
     strategy:
       matrix: 
         world: [hello, there, you]
+    env:
+      TAG: ${GITHUB_REF#refs/*/}-$(git rev-parse --short HEAD)
     steps:
       - name: Input Variables
         run: |
            echo "name: ${{ github.event.inputs.name }} ${{ matrix.world }}"
+      - name: Set tag
+        id: tag
+        run:
+          echo "::set-output name=tag::${GITHUB_REF#refs/*/}-$(git rev-parse
+          --short HEAD)"
       - uses: peter-evans/commit-comment@v1
         with:
           body: |
