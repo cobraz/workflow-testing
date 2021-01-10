@@ -13,7 +13,7 @@ on:
 
 jobs:
   deployment:
-    name: Test (${{ github.event.inputs.name }}, ${{ matrix.world }}, ${GITHUB_REF#refs/*/}-${{ github.sha }})
+    name: Test (${{ github.event.inputs.name }}, ${{ matrix.world }})
     runs-on: ubuntu-latest
     outputs:
       service: ${{ github.event.inputs.name }}
@@ -35,4 +35,10 @@ jobs:
         with:
           body: |
             name: ${{ github.event.inputs.name }}
+      - uses: LouisBrunner/checks-action@v1.1.1
+        with:
+          name: Output
+          output: |
+            {"summary": "Pushed ${{ github.event.inputs.name }}", "text_description": "It was a success to push ${{ github.event.inputs.name }} with ${{ matrix.world }}"}
+
           
