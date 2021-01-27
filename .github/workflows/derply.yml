@@ -26,7 +26,8 @@ jobs:
       with:
         step: start
         token: ${{ secrets.GITHUB_TOKEN }}
-        env: prod/${{ matrix.service }}:master-9x8e1
+        env: prod/${{ matrix.service }}
+        desc: master-a293047
 
     - name: do my deploy
       run: echo 'I DID SOMETHING COOL!'
