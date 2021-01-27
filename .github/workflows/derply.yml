@@ -4,6 +4,21 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - service: 'tripletex'
+            package: 'tripletex-export-server'
+            dockerfile: 'Dockerfile.generic-node-app'
+          - service: 'fiken'
+            package: 'fiken-export-server'
+            dockerfile: 'Dockerfile.generic-node-app'
+          - service: 'auth'
+            package: 'folio-authorization-service'
+            dockerfile: 'Dockerfile.generic-node-app'
+          - service: 'slack-logger'
+            package: 'folio-slack-logger'
+            dockerfile: 'Dockerfile.generic-node-app'
     steps:
     - name: start deployment
       uses: bobheadxi/deployments@v0.4.3
@@ -11,7 +26,7 @@ jobs:
       with:
         step: start
         token: ${{ secrets.GITHUB_TOKEN }}
-        env: release
+        env: ${{ matrix.service }}:master-9x8e1
 
     - name: do my deploy
       run: echo 'I DID SOMETHING COOL!'
