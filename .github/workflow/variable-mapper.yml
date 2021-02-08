@@ -1,0 +1,16 @@
+on:
+  push:
+
+jobs:
+  simple:
+    name: Simple Workflow
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cobraz/variable-mapper@v1
+        id: stack
+        with:
+          map:
+            main: prod
+            staging: staging
+            dev: dev
