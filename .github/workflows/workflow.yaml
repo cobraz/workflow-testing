@@ -12,6 +12,14 @@ on:
         required: true
 
 jobs:
+  test-warning-msg:
+    name: Warning!
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output warning message
+        run: echo "::warning::A new version of the Pulumi Action is available. It’s faster and works better with the ecosystem of other Actions. Please upgrade to pulumi/actions@v2: [link to migration guide]"
+        shell: bash
+        
   deployment:
     name: Test (${{ github.event.inputs.name }}, ${{ matrix.world }})
     runs-on: ubuntu-latest
