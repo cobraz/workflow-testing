@@ -17,8 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Output warning message
-        run: echo "::warning::A new version of the Pulumi Action is available. It’s faster and works better with the ecosystem of other Actions. Please upgrade to pulumi/actions@v2: [link to migration guide]"
-        shell: bash
+        run: echo "::warning::A new version of the Pulumi Action is available. It’s faster and works better with the ecosystem of other Actions. Please upgrade to pulumi/actions@v2:"
         
   deployment:
     name: Test (${{ github.event.inputs.name }}, ${{ matrix.world }})
