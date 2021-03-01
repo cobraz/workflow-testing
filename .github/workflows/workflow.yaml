@@ -12,6 +12,15 @@ on:
         required: true
 
 jobs:
+  test-date:
+    name: Date
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date --date='-1 month' +'%Y-%m')"
+        
+      - run: echo ${{ steps.date.outputs.date }}
   test-warning-msg:
     name: Warning!
     runs-on: ubuntu-latest
